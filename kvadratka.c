@@ -9,6 +9,7 @@
 int SolveSquare(double a, double b, double c, double* x1, double* x2);
 int allTests(int nTest, double a, double b, double c, double x1exp, double x2exp, int nRootsExp);
 int CheckCon(double* a, double* b, double* c);
+void clear_sc();
 
 int main()
 {
@@ -19,11 +20,12 @@ int main()
     double a = 0, b = 0, c = 0;
     scanf ("%lg %lg %lg", &a, &b, &c);
 
-    while (CheckCon(&a, &b, &c) != 1)
+    while (scanf("%lg %lg %lg", &a, &b, &c) != 3)
     {
-        CheckCon(&a, &b, &c);
-
+        CheckCon(&a,&b,&c);
+        clear_sc();
     }
+
     double x1 = 0, x2 = 0;
     int nRoots = SolveSquare(a, b, c, &x1, &x2);
     switch (nRoots)
@@ -42,16 +44,18 @@ int main()
     return 0;
 }
 
+void clear_sc()
+{
+    while(getchar() != '\n');
+}
+
 int CheckCon(double* a, double *b, double *c)
 {
     if ((isdigit(a) != 1) || (isdigit(b) != 1) || (isdigit(c) != 1))
     {
-        printf("%s", "You must enter numbers. Try again: \n");
+        printf("%s", "You must enter numbers. Try again: ");
         scanf ("%lg %lg %lg", &a, &b, &c);
-        return 0;
     }
-    else
-        return 1;
 }
 
 int SolveSquare (double a, double b, double c, double* x1, double* x2)
