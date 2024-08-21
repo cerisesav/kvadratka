@@ -18,14 +18,12 @@ int main()
 
     printf ("Enter a, b, c: ");
     double a = 0, b = 0, c = 0;
-    scanf ("%lg %lg %lg", &a, &b, &c);
 
     while (scanf("%lg %lg %lg", &a, &b, &c) != 3)
     {
-        CheckCon(&a,&b,&c);
         clear_sc();
+        CheckCon(&a,&b,&c);
     }
-
     double x1 = 0, x2 = 0;
     int nRoots = SolveSquare(a, b, c, &x1, &x2);
     switch (nRoots)
@@ -46,7 +44,8 @@ int main()
 
 void clear_sc()
 {
-    while(getchar() != '\n');
+    while(getchar() != '\n')
+    ;
 }
 
 int CheckCon(double* a, double *b, double *c)
@@ -54,7 +53,6 @@ int CheckCon(double* a, double *b, double *c)
     if ((isdigit(a) != 1) || (isdigit(b) != 1) || (isdigit(c) != 1))
     {
         printf("%s", "You must enter numbers. Try again: ");
-        scanf ("%lg %lg %lg", &a, &b, &c);
     }
 }
 
