@@ -10,6 +10,7 @@
 
 void clear_buf();
 int compare_doubles(double a, double b);
+void input(double &a, double &b, double &c);
 
 enum RootQ
 {
@@ -21,7 +22,8 @@ enum RootQ
 
 enum RootQ solve_quare(double a, double b, double c, double* x1, double* x2);
 void get_results(enum RootQ nRoots, double x1, double x2);
-enum RootQ lineal_square(double a, double b, double c, double* x1, double* x2);
+enum RootQ lineal_eq(double a, double b, double c, double* x1, double* x2);
+enum RootQ square_eq(double a, double b, double c, double* x1, double* x2);
 
 struct TestingData
 {
@@ -38,14 +40,20 @@ int main()
     puts("Enter a, b, c: ");
     double a = 0, b = 0, c = 0;
 
+    input(a,b,c);
+    double x1 = 0, x2 = 0;
+
+    enum RootQ nRoots = solve_quare(a, b, c, &x1, &x2);
+    get_results(nRoots, x1, x2);
+}
+
+void input(double &a, double &b, double &c)
+{
     while (scanf("%lf %lf %lf", &a, &b, &c) != 3)
     {
         clear_buf();
         puts("Try again: ");
     }
-    double x1 = 0, x2 = 0;
-    enum RootQ nRoots = solve_quare(a, b, c, &x1, &x2);
-    get_results(nRoots, x1, x2);
 }
 
 void get_results(enum RootQ nRoots, double x1, double x2)
@@ -67,11 +75,11 @@ void get_results(enum RootQ nRoots, double x1, double x2)
 
 void clear_buf()
 {
-    char simbol = getchar();
-    while(simbol != '\n') {
-        if (simbol == EOF)
+    char symbol = getchar();
+    while(symbol != '\n') {
+        if (symbol == EOF)
             break;
-        simbol = getchar();
+        symbol = getchar();
     }
 }
 
@@ -84,11 +92,11 @@ int compare_doubles(double a, double b)
         return 0;
 }
 
-enum RootQ lineal_square(double a, double b, double c, double* x1, double* x2)
+enum RootQ lineal_eq(double a, double b, double c, double* x1, double* x2)
 {
     if (compare_doubles(b, 0))
     {
-        return compare_doubles(c, 0)? INF_ROOTS : NO_ROOTS; // разбить на отдельные функции
+        return compare_doubles(c, 0)? INF_ROOTS : NO_ROOTS;
     }
     else /* if (b != 0) */
     {
@@ -97,18 +105,9 @@ enum RootQ lineal_square(double a, double b, double c, double* x1, double* x2)
     }
 }
 
-enum RootQ solve_quare(double a, double b, double c, double* x1, double* x2)
+enum RootQ square_eq(double a, double b, double c, double* x1, double* x2)
 {
-    assert (x1 != NULL);
-    assert (x2 != NULL);
-    assert (x1 != x2);
-
-    if (compare_doubles(a, 0))
-        lineal_square(a,b,c, *x1, *x2);
-
-    else /* if (a != 0) */
-        {
-        double diskr = b*b - 4*a*c;
+    double diskr = b*b - 4*a*c;
         if (diskr == 0)
         {
             *x1 = *x2 = -b / (2*a);
@@ -125,6 +124,20 @@ enum RootQ solve_quare(double a, double b, double c, double* x1, double* x2)
             *x2 = (-b + sqrt_d)/(2*a);
             return TWO_ROOTS;
         }
+}
+
+enum RootQ solve_quare(double a, double b, double c, double* x1, double* x2)
+{
+    assert (x1 != NULL);
+    assert (x2 != NULL);
+    assert (x1 != x2);
+
+    if (compare_doubles(a, 0))
+        return lineal_eq(a,b,c, x1, x2);
+
+    else /* if (a != 0) */
+    {
+        return square_eq(a,b,c, x1, x2);
     }
 }
 
