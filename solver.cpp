@@ -1,5 +1,3 @@
-#pragma once
-
 enum RootQ
 {
     NO_ROOTS = 0,
@@ -17,21 +15,7 @@ int compare_doubles(double a, double b)
         return 0;
 }
 
-void get_results(enum RootQ nRoots, double x1, double x2)
-{
-    switch (nRoots)
-    {
-        case NO_ROOTS: puts("No roots\n");
-            break;
-        case ONE_ROOT: printf("x = %lf\n", x1);
-            break;
-        case TWO_ROOTS: printf("x1 = %lf, x2 = %lf\n", x1, x2);
-            break;
-        case INF_ROOTS: puts("infinity");
-            break;
-        default: printf("main(): ERROR: nRoots = %d\n", nRoots);
-    }
-}
+
 
 enum RootQ lineal_eq(double a, double b, double c, double* x1, double* x2)
 {
