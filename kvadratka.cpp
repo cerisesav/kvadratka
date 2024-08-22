@@ -10,7 +10,7 @@
 
 void clear_buf();
 int compare_doubles(double a, double b);
-void input(double &a, double &b, double &c);
+void input(double* a, double* b, double* c);
 
 enum RootQ
 {
@@ -27,8 +27,8 @@ enum RootQ square_eq(double a, double b, double c, double* x1, double* x2);
 
 struct TestingData
 {
-    double a,b,c;
-    double x1exp,x2exp;
+    double a, b, c;
+    double x1exp, x2exp;
     int nTest, nRootsExp;
 };
 
@@ -40,16 +40,17 @@ int main()
     puts("Enter a, b, c: ");
     double a = 0, b = 0, c = 0;
 
-    input(a,b,c);
+    input(&a,&b,&c);
     double x1 = 0, x2 = 0;
 
     enum RootQ nRoots = solve_quare(a, b, c, &x1, &x2);
     get_results(nRoots, x1, x2);
+
 }
 
-void input(double &a, double &b, double &c)
+void input(double* a, double* b, double* c)
 {
-    while (scanf("%lf %lf %lf", &a, &b, &c) != 3)
+    while (scanf("%lf %lf %lf", a, b, c) != 3)
     {
         clear_buf();
         puts("Try again: ");
@@ -107,10 +108,10 @@ enum RootQ lineal_eq(double a, double b, double c, double* x1, double* x2)
 
 enum RootQ square_eq(double a, double b, double c, double* x1, double* x2)
 {
-    double diskr = b*b - 4*a*c;
+    double diskr = b * b - 4 * a * c;
         if (diskr == 0)
         {
-            *x1 = *x2 = -b / (2*a);
+            *x1 = *x2 = -b / (2 * a);
             return ONE_ROOT;
         }
 
@@ -120,8 +121,8 @@ enum RootQ square_eq(double a, double b, double c, double* x1, double* x2)
         else
         {
             double sqrt_d = sqrt(diskr);
-            *x1 = (-b - sqrt_d)/(2*a);
-            *x2 = (-b + sqrt_d)/(2*a);
+            *x1 = (-b - sqrt_d) / (2 * a);
+            *x2 = (-b + sqrt_d) / ( 2 * a);
             return TWO_ROOTS;
         }
 }
@@ -133,11 +134,11 @@ enum RootQ solve_quare(double a, double b, double c, double* x1, double* x2)
     assert (x1 != x2);
 
     if (compare_doubles(a, 0))
-        return lineal_eq(a,b,c, x1, x2);
+        return lineal_eq(a, b, c, x1, x2);
 
     else /* if (a != 0) */
     {
-        return square_eq(a,b,c, x1, x2);
+        return square_eq(a, b, c, x1, x2);
     }
 }
 
