@@ -2,20 +2,20 @@
 #include <math.h>
 #include <stdlib.h>
 #include <assert.h>
-#include <ctype.h>
+
 // #include <TXLib.h>
 
-enum root_q SolveSquare(double a, double b, double c, double* x1, double* x2);
+enum RootQ SolveSquare(double a, double b, double c, double* x1, double* x2);
 // int allTests(int nTest, double a, double b, double c, double x1exp, double x2exp, int nRootsExp);
-void CheckCon(double* a, double* b, double* c);
-void clear_sc();
-void Results(enum root_q nRoots, double x1, double x2);
-int compare(double a, double b);
 
-enum root_q
+void clear_buf();
+void get_results(enum RootQ nRoots, double x1, double x2);
+int compare_num(double a, double b);
+
+enum RootQ
 {
     NO_ROOTS = 0,
-    ONLY_ONE,
+    ONE_ROOT,
     TWO_ROOTS,
     INF_ROOTS = -1
 };
@@ -30,20 +30,20 @@ int main()
 
     while (scanf("%lf %lf %lf", &a, &b, &c) != 3)
     {
-        clear_sc();
+        clear_buf();
     }
     double x1 = 0, x2 = 0;
-    enum root_q nRoots = SolveSquare(a, b, c, &x1, &x2);
-    Results(nRoots, x1, x2);
+    enum RootQ nRoots = SolveSquare(a, b, c, &x1, &x2);
+    get_results(nRoots, x1, x2);
 }
 
-void Results(enum root_q nRoots, double x1, double x2)
+void get_results(enum RootQ nRoots, double x1, double x2)
 {
     switch (nRoots)
     {
         case NO_ROOTS: printf ("No roots\n");
             break;
-        case ONLY_ONE: printf ("x = %lf\n", x1);
+        case ONE_ROOT: printf ("x = %lf\n", x1);
             break;
         case TWO_ROOTS: printf ("x1 = %lf, x2 = %lf\n", x1, x2);
             break;
@@ -54,44 +54,36 @@ void Results(enum root_q nRoots, double x1, double x2)
 }
 
 
-void clear_sc()
+void clear_buf()
 {
     while(getchar() != '\n');
 }
 
-void CheckCon(double* a, double *b, double *c)
-{
-    if ((isdigit(*a) != 1) || (isdigit(*b) != 1) || (isdigit(*c) != 1))
-    {
-        printf("%s", "You must enter numbers. Try again: ");
-    }
-}
-
-int compare(double a, double b)
+int compare_num(double a, double b)
 {
     const double acc = 0.000001;
-    if (abs((a - b)) < acc)
+    if (fabs((a - b)) < acc)
         return 1;
     else
         return 0;
 }
 
-enum root_q SolveSquare (double a, double b, double c, double* x1, double* x2)
+enum RootQ SolveSquare (double a, double b, double c, double* x1, double* x2)
 {
     assert (x1 != NULL);
     assert (x2 != NULL);
     assert (x1 != x2);
 
-    if (compare(a, 0))
+    if (compare_num(a, 0))
         {
-        if (compare(b, 0))
+        if (compare_num(b, 0))
         {
-            return compare(c, 0)? INF_ROOTS : 0;
+            return compare_num(c, 0)? INF_ROOTS : 0;
         }
         else /* if (b != 0) */
         {
             *x1 = -c / b;
-            return ONLY_ONE;
+            return ONE_ROOT;
         }
     }
     else /* if (a != 0) */
@@ -100,7 +92,7 @@ enum root_q SolveSquare (double a, double b, double c, double* x1, double* x2)
         if (d == 0)
             {
             *x1 = *x2 = -b / (2*a);
-            return ONLY_ONE;
+            return ONE_ROOT;
             }
 
         else if (d < 0)
