@@ -1,15 +1,14 @@
-enum RootQ
-{
-    NO_ROOTS = 0,
-    ONE_ROOT,
-    TWO_ROOTS,
-    INF_ROOTS = -1
-};
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
+#include <assert.h>
+
+#include "solver.h"
 
 int compare_doubles(double a, double b)
 {
-    const double acc = 0.000001;
-    if (fabs((a - b)) < acc)
+    const double ACC = 0.000001;
+    if (fabs((a - b)) < ACC)
         return 1;
     else
         return 0;

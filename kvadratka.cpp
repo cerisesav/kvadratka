@@ -2,11 +2,11 @@
 #include <math.h>
 #include <stdlib.h>
 #include <assert.h>
-#include "get_results.h"
-#include "input.h"
+
+#include "input_output.h"
+#include "solver.h"
 
 // #include <TXLib.h>
-
 
 // int testing_scr(struct TestingData);
 
@@ -34,7 +34,7 @@ int main()
     puts("Enter a, b, c: ");
     double a = 0, b = 0, c = 0;
 
-    input(&a,&b,&c);
+    input(&a, &b, &c);
     double x1 = 0, x2 = 0;
 
     enum RootQ nRoots = solve_quare(a, b, c, &x1, &x2);
