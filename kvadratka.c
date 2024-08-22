@@ -22,10 +22,10 @@ enum RootQ
 
 int main()
 {
-    printf("# Square equation solver\n"
+    puts("# Square equation solver\n"
     "# (c) Vika, 2024\n\n");
 
-    printf ("Enter a, b, c: ");
+    puts("Enter a, b, c: ");
     double a = 0, b = 0, c = 0;
 
     while (scanf("%lf %lf %lf", &a, &b, &c) != 3)
@@ -41,15 +41,15 @@ void get_results(enum RootQ nRoots, double x1, double x2)
 {
     switch (nRoots)
     {
-        case NO_ROOTS: printf ("No roots\n");
+        case NO_ROOTS: puts("No roots\n");
             break;
-        case ONE_ROOT: printf ("x = %lf\n", x1);
+        case ONE_ROOT: printf("x = %lf\n", x1);
             break;
-        case TWO_ROOTS: printf ("x1 = %lf, x2 = %lf\n", x1, x2);
+        case TWO_ROOTS: printf("x1 = %lf, x2 = %lf\n", x1, x2);
             break;
-        case INF_ROOTS: printf ("infinity");
+        case INF_ROOTS: puts("infinity");
             break;
-        default: printf ("main(): ERROR: nRoots = %d\n", nRoots);
+        default: printf("main(): ERROR: nRoots = %d\n", nRoots);
     }
 }
 
@@ -78,7 +78,7 @@ enum RootQ SolveSquare (double a, double b, double c, double* x1, double* x2)
         {
         if (compare_num(b, 0))
         {
-            return compare_num(c, 0)? INF_ROOTS : 0;
+            return compare_num(c, 0)? INF_ROOTS : NO_ROOTS;
         }
         else /* if (b != 0) */
         {
