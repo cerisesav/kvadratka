@@ -6,7 +6,7 @@
 // #include <TXLib.h>
 
 enum RootQ SolveSquare(double a, double b, double c, double* x1, double* x2);
-// int allTests(int nTest, double a, double b, double c, double x1exp, double x2exp, int nRootsExp);
+int testing_scr(int nTest, double a, double b, double c, double x1exp, double x2exp, int nRootsExp);
 
 void clear_buf();
 void get_results(enum RootQ nRoots, double x1, double x2);
@@ -111,19 +111,19 @@ enum RootQ SolveSquare (double a, double b, double c, double* x1, double* x2)
 
 
 
-// int allTests(int nTest, double a, double b, double c, double x1exp, double x2exp, int nRootsExp)
-// {
-//     nTest = 1;
-//     double x1 = 0, x2 = 0;
-//     int nRoots = SolveSquare(a,b,c,&x1,&x2);
-//     if (nRoots != nRootsExp || x1 != x1exp || x2 != x2exp)
-//     {
-//         printf("ERROR Test 1: a = %lf, b = %lf, c = %lf, x1 = %lf, x2 = %lf\n"
-//             "Expected nRoot: x1 = %lf, x2 = %lf, nRoot = %d\n",
-//             nTest, a, b, c, x1, x2, nRoots,
-//             x1exp, x2exp, nRootsExp);
-//         return 1;
-//     }
-//     else
-//         return 0;
-// }
+int testing_scr(int nTest, double a, double b, double c, double x1exp, double x2exp, int nRootsExp)
+{
+    nTest = 1;
+    double x1 = 0, x2 = 0;
+    int nRoots = SolveSquare(a,b,c,&x1,&x2);
+    if (compare_num(nRoots, nRootsExp) != 1 || compare_num(x1,x1exp) != 1 || compare_num(x2,x2exp) != 1)
+    {
+        printf("ERROR Test 1: a = %lf, b = %lf, c = %lf, x1 = %lf, x2 = %lf\n"
+            "Expected nRoots: x1 = %lf, x2 = %lf, nRoots = %d\n",
+            nTest, a, b, c, x1, x2, nRoots,
+            x1exp, x2exp, nRootsExp);
+        return 1;
+    }
+    else
+        return 0;
+}
