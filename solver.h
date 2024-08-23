@@ -9,9 +9,17 @@ enum RootQ
     INF_ROOTS = -1
 };
 
-int compare_doubles(double a, double b);
-enum RootQ lineal_eq(double a, double b, double c, double* x1, double* x2);
-enum RootQ square_eq(double a, double b, double c, double* x1, double* x2);
-enum RootQ solve_quare(double a, double b, double c, double* x1, double* x2);
+struct Coeffs
+{
+   double a, b, c;
+};
+
+struct Roots
+{
+    double x1, x2;
+    RootQ nRoots;
+};
+
+Roots solve_square(const Coeffs* equ);
 
 #endif //SOLVER_H

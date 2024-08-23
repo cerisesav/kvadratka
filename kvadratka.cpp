@@ -1,30 +1,8 @@
-#include <stdio.h>
-#include <math.h>
-#include <stdlib.h>
-#include <assert.h>
-
 #include "input_output.h"
 #include "solver.h"
-
-// #include <TXLib.h>
+#include <stdio.h>
 
 // int testing_scr(struct TestingData);
-
-void clear_buf();
-int compare_doubles(double a, double b);
-void input(double* a, double* b, double* c);
-
-enum RootQ solve_quare(double a, double b, double c, double* x1, double* x2);
-void get_results(enum RootQ nRoots, double x1, double x2);
-enum RootQ lineal_eq(double a, double b, double c, double* x1, double* x2);
-enum RootQ square_eq(double a, double b, double c, double* x1, double* x2);
-
-struct TestingData
-{
-    double a, b, c;
-    double x1exp, x2exp;
-    int nTest, nRootsExp;
-};
 
 int main()
 {
@@ -32,14 +10,13 @@ int main()
     "# (c) Vika, 2024\n\n");
 
     puts("Enter a, b, c: ");
-    double a = 0, b = 0, c = 0;
+    Coeffs equ = {};
 
-    input(&a, &b, &c);
-    double x1 = 0, x2 = 0;
+    input(&equ.a, &equ.b, &equ.c);
 
-    enum RootQ nRoots = solve_quare(a, b, c, &x1, &x2);
-    get_results(nRoots, x1, x2);
-
+    Roots roots = solve_square(&equ);
+    print_results(roots.nRoots, roots.x1, roots.x2);
+    return 0;
 }
 
 
@@ -60,3 +37,10 @@ int main()
 //     else
 //         return 0;
 // }
+
+// struct TestingData
+// {
+//     double a, b, c;
+//     double x1exp, x2exp;
+//     int nTest, nRootsExp;
+// };

@@ -1,10 +1,7 @@
 #include <stdio.h>
-#include <math.h>
-#include <stdlib.h>
+// #include <stdlib.h>
 #include <assert.h>
-
 #include "input_output.h"
-#include "solver.h"
 
 void clear_buf()
 {
@@ -26,7 +23,7 @@ void input(double* a, double* b, double* c)
     }
 }
 
-void get_results(enum RootQ nRoots, double x1, double x2)
+void print_results(RootQ nRoots, double x1, double x2)
 {
     switch (nRoots)
     {
