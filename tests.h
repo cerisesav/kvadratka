@@ -1,3 +1,6 @@
+#ifndef TESTS_H
+#define TESTS_H
+
 #include "solver.h"
 
 struct TestingData
@@ -6,4 +9,4 @@ struct TestingData
     Roots roots_exp;
 };
 
-
+#endif // TESTS_H

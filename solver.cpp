@@ -1,16 +1,9 @@
 #include <math.h>
-// #include <stdlib.h>
 #include <assert.h>
 
 #include "solver.h"
 
-enum DoublesEquality
-{
-    NOT_EQUAL,
-    EQUAL
-};
-
-static DoublesEquality compare_doubles(double a, double b);
+DoublesEquality compare_doubles(double a, double b);
 static Roots lineal_eq(const Coeffs* equ);
 static Roots square_eq(const Coeffs* equ);
 
@@ -27,7 +20,7 @@ Roots solve_square(const Coeffs* equ)
     }
 }
 
-static DoublesEquality compare_doubles(double a, double b)
+DoublesEquality compare_doubles(double a, double b)
 {
     const double ACC = 0.000001;
     if (fabs((a - b)) < ACC)

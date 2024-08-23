@@ -20,6 +20,14 @@ struct Roots
     RootQ nRoots;
 };
 
+enum DoublesEquality
+{
+    NOT_EQUAL,
+    EQUAL
+};
+
 Roots solve_square(const Coeffs* equ);
+
+DoublesEquality compare_doubles(double a, double b);
 
 #endif //SOLVER_H

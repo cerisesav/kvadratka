@@ -1,12 +1,13 @@
 #include <stdio.h>
-// #include <stdlib.h>
 #include <assert.h>
 #include "input_output.h"
 
 void clear_buf()
 {
     char symbol = getchar();
+
     assert (symbol != EOF);
+
     while(symbol != '\n') {
         if (symbol == EOF)
             break;
