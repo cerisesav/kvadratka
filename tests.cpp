@@ -1,6 +1,9 @@
-#include "tests.h"
 #include <stdbool.h>
 #include <stdio.h>
+
+
+#include "tests.h"
+
 
 bool compare_struct(const Roots* test, const Roots* roots);
 

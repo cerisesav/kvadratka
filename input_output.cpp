@@ -15,6 +15,16 @@ void clear_buf()
     }
 }
 
+void solve_mode()
+{
+    puts("Enter a, b, c: ");
+    Coeffs equ = {};
+    input(&equ.a, &equ.b, &equ.c);
+    Roots roots = solve_square(&equ);
+    print_results(roots.nRoots, roots.x1, roots.x2);
+}
+
+
 void input(double* a, double* b, double* c)
 {
     while (scanf("%lf %lf %lf", a, b, c) != 3)
