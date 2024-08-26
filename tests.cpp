@@ -19,7 +19,7 @@ void run_test(const TestingData* test, size_t i_test)
     }
     else
     {
-        printf("%lu", i_test);
+        printf("%lu%s", i_test, ". ");
         puts("\033[31mFAIL\033[0m");
     }
 }

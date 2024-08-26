@@ -54,7 +54,7 @@ static Roots square_eq(const Coeffs* equ)
     assert (equ != nullptr);
 
     double diskr = equ->b * equ->b - 4 * equ->a * equ->c;
-    if (diskr == 0)
+    if (compare_doubles(diskr, 0) == EQUAL)
     {
         roots.x1 = roots.x2 = -equ->b / (2 * equ->a);
         roots.nRoots = ONE_ROOT;

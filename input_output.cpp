@@ -4,7 +4,7 @@
 
 void clear_buf()
 {
-    char symbol = getchar();
+    int symbol = getchar();
 
     assert (symbol != EOF);
 
