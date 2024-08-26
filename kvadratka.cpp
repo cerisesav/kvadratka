@@ -1,7 +1,7 @@
 #include "input_output.h"
 #include "solver.h"
 #include <stdio.h>
-
+#include "tests.h"
 
 int main()
 {
@@ -15,6 +15,9 @@ int main()
 
     Roots roots = solve_square(&equ);
     print_results(roots.nRoots, roots.x1, roots.x2);
+    printf("%d %d", roots.x1, roots.x2);
+    run_all_tests();
+
     return 0;
 }
 

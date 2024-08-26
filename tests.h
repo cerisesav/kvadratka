@@ -9,4 +9,6 @@ struct TestingData
     Roots roots_exp;
 };
 
+void run_all_tests();
+
 #endif // TESTS_H
