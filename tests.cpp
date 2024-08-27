@@ -32,7 +32,6 @@ bool compare_struct(const Roots* test, const Roots* roots)
         return false;
 }
 
-
 void run_all_tests() {
     const size_t nTests = 7;
 
@@ -52,5 +51,25 @@ void run_all_tests() {
     }
 }
 
+// void tests()
+// {
+//     FILE *file;
+//     char arr[2];
+//
+//     file = fopen("tests.txt", "r");
+//
+//
+//     printf("%s", a);
+//
+//     printf("\n");
+//     fclose(file);
+// }
 
-
+//
+// open file
+// test struct
+// while( fscanf(... to struct) )
+// {
+//     solver(test)
+//     cmp results
+// }

@@ -22,7 +22,9 @@ int main(int argc, char *argv[])
             solve_mode();
         }
         else if (!strcmp(argv[1], "test"))
+        {
             run_all_tests();
+        }
 
         else
             puts("\033[31mERROR\033[0m: choose test or solve ");
