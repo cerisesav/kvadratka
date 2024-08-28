@@ -7,6 +7,13 @@ DoublesEquality compare_doubles(double a, double b);
 static Roots lineal_eq(const Coeffs* equ);
 static Roots square_eq(const Coeffs* equ);
 
+/**
+ * @brief Solve  equation.
+ *
+ * This function separate equation to square and lineal, takes struct with coefficients of equation entered from clipboard, if it looks to be lineal equation, then calls lineal equstion solver function.
+ * \param struct of coefficients
+ * \return functiions to solve equation (square or lineal)
+ */
 Roots solve_square(const Coeffs* equ)
 {
     assert (equ != nullptr);
@@ -20,6 +27,14 @@ Roots solve_square(const Coeffs* equ)
     }
 }
 
+/**
+ * @brief Compare double digits.
+ *
+ * This function compares double digits with const accuracy in order to prevent false comparing with 0.
+ * \param double, double
+ * \return equality
+ */
+
 DoublesEquality compare_doubles(double a, double b)
 {
     const double ACC = 0.000001;
@@ -29,6 +44,13 @@ DoublesEquality compare_doubles(double a, double b)
         return NOT_EQUAL;
 }
 
+/**
+ * @brief Solve lineal equation
+ *
+ * This function solves lineal equation and gets struct of coefficients.
+ * \param struct of coefficients
+ * \return double, double, int (roots and number of roots)
+ */
 
 static Roots lineal_eq(const Coeffs* equ)
 {
@@ -48,6 +70,13 @@ static Roots lineal_eq(const Coeffs* equ)
     return roots;
 }
 
+/**
+ * @brief Solve square equation.
+ *
+ * This function solves square equation, takes struct with coefficients of equation entered from clipboard, if it looks to be lineal equation, then calls lineal equstion solver function.
+ * \param struct of coefficients
+ * \return double, double, int (roots and number of roots)
+ */
 static Roots square_eq(const Coeffs* equ)
 {
     Roots roots = {};

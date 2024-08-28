@@ -2,6 +2,11 @@
 #include <assert.h>
 #include "input_output.h"
 
+/**
+ * \brief clears buffer after wrong input
+ *
+ * This function takes break code if assert is triggered, clears buffer via getchar
+ */
 void clear_buf()
 {
     int symbol = getchar();
@@ -15,6 +20,12 @@ void clear_buf()
     }
 }
 
+/**
+ * @brief Solve equation mode.
+ *
+ * This function solves equation and triggers print function.
+ * Takes struct with coefficients and roots
+ */
 void solve_mode()
 {
     puts("Enter a, b, c: ");
@@ -24,6 +35,12 @@ void solve_mode()
     print_results(roots.nRoots, roots.x1, roots.x2);
 }
 
+/**
+ * @brief Correct input.
+ *
+ * This function receive coefficients from terminal and checks if they are correct entered.
+ * \param a, b, c - *doubles
+ */
 
 void input(double* a, double* b, double* c)
 {
@@ -33,6 +50,13 @@ void input(double* a, double* b, double* c)
         puts("Try again: ");
     }
 }
+
+/**
+ * @brief Print results of equation.
+ *
+ * This function switches between cases (depends on quatity of roots).
+ * \param struct of roots, double, double
+ */
 
 void print_results(RootQ nRoots, double x1, double x2)
 {

@@ -9,7 +9,13 @@
 #define SOLVE 1
 #define TEST  2
 
-int main(int argc, char *argv[])
+/**
+ * @brief Main function
+ *
+ * This function call other functions (depending on mode), person chooses from command line which mode to use.
+ * \param int (mode) and char
+ */
+int main(int argc, const char *argv[])
 
 {
     puts("# Square equation solver\n"
@@ -31,6 +37,8 @@ int main(int argc, char *argv[])
     }
     else
             puts("\033[31mERROR\033[0m: choose test or solve ");
+
+    tests();
 
     return 0;
 }
