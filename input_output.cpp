@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <assert.h>
 #include "input_output.h"
+#include <string.h>
 
 /**
  * \brief clears buffer after wrong input
@@ -18,6 +19,39 @@ void clear_buf()
             break;
         symbol = getchar();
     }
+}
+
+/**
+ * \brief select mode to run, default = solve
+ *
+ * This function selects mode entered from command line
+ * \param int argc, char *argv
+ */
+enum Mode select_mode(int argc, const char *argv[])
+{
+    if (argc == 2)
+    {
+        if (strcmp(argv[1], "solve") == 0)
+        {
+            return SOLVE;
+        }
+        else if (!strcmp(argv[1], "test"))
+        {
+            return TEST;
+        }
+
+        else
+        {
+            puts("\033[31mERROR\033[0m: choose test or solve ");
+            return ERROR;
+        }
+    }
+    else
+    {
+        puts("\033[31mERROR\033[0m: choose test or solve ");
+        return ERROR;
+    }
+
 }
 
 /**
